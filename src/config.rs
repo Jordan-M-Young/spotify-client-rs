@@ -1,4 +1,6 @@
 use serde::Deserialize;
+use std::string::FromUtf8Error;
+use std::fs;
 
 
 pub fn load_file_string(filepath: &str) -> Result<String, FromUtf8Error> {
@@ -8,14 +10,14 @@ pub fn load_file_string(filepath: &str) -> Result<String, FromUtf8Error> {
     Ok(file_string)
 }
 
-#[derive(Deserialize, Debug, PartialEq)]
+#[derive(Debug, PartialEq, Deserialize)]
 pub struct SpotifyConfig {
     pub key: String,
 }
 
 #[derive(Deserialize, Debug, PartialEq)]
 pub struct AppConfig {
-    pub port: String,
+    pub port: u16,
 }
 
 #[derive(Deserialize, Debug, PartialEq)]

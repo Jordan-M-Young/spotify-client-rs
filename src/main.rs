@@ -1,5 +1,5 @@
 use actix_web::{get, post, web, App, HttpResponse, HttpServer, Responder};
-
+pub mod config;
 
 
 #[get("/")]
@@ -18,13 +18,20 @@ async fn manual_hello() -> impl Responder {
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
+
+    let config = config::load_toml("./config.toml");
+
+    let port = config.app.port;
+
+
+
     HttpServer::new(|| {
         App::new()
             .service(hello)
             .service(echo)
             .route("/hey", web::get().to(manual_hello))
     })
-    .bind(("127.0.0.1",3000))?
+    .bind(("127.0.0.1",port))?
     .run()
     .await
 }
