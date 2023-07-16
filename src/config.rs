@@ -1,7 +1,6 @@
 use serde::Deserialize;
-use std::string::FromUtf8Error;
 use std::fs;
-
+use std::string::FromUtf8Error;
 
 pub fn load_file_string(filepath: &str) -> Result<String, FromUtf8Error> {
     let file_bytes = fs::read(filepath).expect("couldn't load file");

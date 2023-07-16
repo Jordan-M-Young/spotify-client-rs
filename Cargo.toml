@@ -9,7 +9,8 @@ edition = "2021"
 actix-web = "4"
 serde = { version = "1.0", features = ["derive"] }
 toml = "0.7.5"
-
+reqwest = "0.11.18"
+tokio = { version = "1", features = ["full"] }
 
 [dev-dependencies]
 rusty-hook = "^0.11.2"
